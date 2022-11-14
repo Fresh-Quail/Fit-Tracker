@@ -10,7 +10,7 @@ const
     , inMemoryStorage = multer.memoryStorage()
     , uploadStrategy = multer({ storage: inMemoryStorage }).single('image')
 
-    , { BlockBlobClient } = require('@azure/storage-blob')
+    , { AppendBlobClient } = require('@azure/storage-blob')
     , getStream = require('into-stream')
     , containerName = 'localfit'
 ;
@@ -20,21 +20,34 @@ const handleError = (err, res) => {
     res.render('error', { error: err });
 };
 
-const getBlobName = originalName => {
-    const identifier = Math.random().toString().replace(/0\./, ''); // remove "0." from start of string
-    return `${identifier}-${originalName}`;
-};
+// const getBlobName = originalName => {
+//     const identifier = Math.random().toString().replace(/0\./, ''); // remove "0." from start of string
+//     return `${identifier}-${originalName}`;
+// };
+// function submitEntries(req, res) {
+//     const body = [];
+//     req.on('data', data => {
+//         console.log('Pushing P');
+//         body.push(data);
+//     });
+
+//     req.on('end', () => {
+//         console.log('Success!');
+//         const requestBody = Buffer.concat(body).toString();
+//         console.log(requestBody);
+//     })
+// }
+
 
 router.post('/', uploadStrategy, (req, res) => {
 
     const
-          blobName = getBlobName(req.file.originalname)
-        , blobService = new BlockBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,blobName)
-        , stream = getStream(req.file.buffer)
-        , streamLength = req.file.buffer.length
+          blobName = "file.txt"
+        , blobService = new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,blobName)
     ;
-
-    blobService.uploadStream(stream, streamLength)
+    
+    blobService.createIfNotExists();
+    blobService.appendBlock(req.body['image'] + '\n', (req.body['image'] + '\n').length)
     .then(
         ()=>{
             res.render('success', { 
