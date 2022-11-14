@@ -4,7 +4,7 @@
 <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
   <div class="upload-container">
     <label for="image">Select and image to upload: </label>
-    <input id="file-picker" type="file" name="image">
+    <input id="file-picker" type="text" name="image">
   </div>
   <div>
     <input type="submit" value="Upload Image">
@@ -29,14 +29,7 @@
 
     document.getElementById('upload-form').addEventListener('submit', (e) => {
 
-      message.innerText = '';
-
-      if(!picker.files.length) {
-        message.innerText = 'Please select an image to upload.';
-        e.preventDefault();
-        return false;
-      }
-    });
+      message.innerText = 'Kirby for days';
 
   });
 </script>
