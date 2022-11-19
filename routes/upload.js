@@ -8,7 +8,7 @@ const
 
     , multer = require('multer')
     , inMemoryStorage = multer.memoryStorage()
-    , uploadStrategy = multer({ storage: inMemoryStorage }).single('image')
+    , uploadStrategy = multer({ storage: inMemoryStorage }).any('image')
 
     , { AppendBlobClient } = require('@azure/storage-blob')
     , getStream = require('into-stream')
@@ -40,27 +40,56 @@ const handleError = (err, res) => {
 
 
 router.post('/', uploadStrategy, (req, res) => {
-
-    const
-          blobName = "file.txt"
-        , blobService = new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,blobName)
-    ;
+    const blobService = [];
+    var bool = false;
+    //Creates a blob representing category 1
+    blobService.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,'Category-1' + '.txt'));
+    //Creates blob categorys 2 through 6
+    for(let i = 2; i < 7; i++){
+        blobService.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,'Category-' + i + '.txt'));
+    }
     
-    blobService.createIfNotExists();
-    blobService.appendBlock(req.body['image'] + '\n', (req.body['image'] + '\n').length)
-    .then(
-        ()=>{
-            res.render('success', { 
-                message: 'File uploaded to Azure Blob storage.' 
-            });
+    //The creation of categorgy 1 only if it does not Exist ------------------------------
+    blobService[0].exists().then(async(exists) => {
+        //If it does not exist, create it and then break
+        if(!exists){
+            blobService[0].create();
+            blobService[0].appendBlock('Categoryname', 'Category-name'.length).then(()=>{})
+            .catch((err)=>{if(err) {handleError(err);return;}});  
+            console.log('First Categeory Exists.');
         }
-    ).catch(
-        (err)=>{
-        if(err) {
-            handleError(err);
-            return;
+        else{ //Otherwise vor each blob after one, only create it if the one before exists
+            console.log('Does exist.');
+            for(var i = 5; i >= 0; i--)
+            {
+                await blobService[i].exists().then(async(exists) => {
+                    //If the prior category exists, create this category and append the name
+                    if(exists){
+                        await blobService[i+1].create();
+                        await blobService[i+1].appendBlock('Category-' + (i+1), ('Category-' + (i+1)).length).then(()=>{})
+                        .catch((err)=>{if(err) {handleError(err);return;}});
+                    }
+                    else{
+                        console.log('Category-' + i + ' does not exist.');
+                        console.log('Category-' + (i+1) + " created.");
+                    }
+                })
+                .catch(
+                    (err)=>{
+                        if(err) {
+                            handleError(err);
+                            return;
+                        }
+                    }
+                )
+            }
         }
     })
+
+    res.render('success', { 
+        message: 'File uploaded to Azure Blob storage.' 
+    });
+    
 });
 
 module.exports = router;
