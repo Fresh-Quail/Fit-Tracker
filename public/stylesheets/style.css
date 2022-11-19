@@ -1,15 +1,50 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body{ 
+  margin-left: 45px;
 }
 
-a {
-  color: #00B7FF;
-}
+h2 { 
+  font-size: 20px; 
+  text-align: center;
 
-.upload-container {
-  border: solid 1px #ccc;
-  padding: 10px;
-  max-width: fit-content;
-  margin-bottom: 10px
+} 
+
+#s1{ 
+display: flex;  
+flex-direction: column;  
+gap: 15px; 
+}   
+
+
+
+.intro,
+.c1,
+.c2,
+.c3,
+.c4,
+.c5, 
+.c6 
+{ 
+  display: flex;  
+  gap: 8px;
+  margin-bottom: 8px;
+} 
+
+form .label1,
+form .label2, 
+form .label3,
+form .label4,
+form .label5,
+form .label6
+{ 
+  font-weight: 1000;
+} 
+
+input{
+  height: 22px;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 8px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
 }

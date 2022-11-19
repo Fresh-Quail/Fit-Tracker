@@ -1,5 +1,7 @@
-<h1>Image Resizer</h1>
+<!DOCTYPE html>
+<html>
 
+<<<<<<< HEAD
 <h2>Upload photos</h2>
 <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
   <div class="upload-container">
@@ -10,26 +12,167 @@
     <input type="submit" value="Upload Image">
   </div>
 </form>
+=======
+  <body>
+    <h2>Data Entry Page</h2>
+    <hr width="90%">
+    <p>Welcome to FitTracker! </br>To begin, please create a new category and enter in your data.</p>
+>>>>>>> new-environment
 
-<p id="message">{{message}}</p>
+    <div id="new-category">
+      <!-- <form action="" method="" class = "intro"> -->
+      <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="category-name">Category Name:</label>
+        <input type="text" id="category-input" name="category-name" placeholder="Body Weight" required>
+        
+        <label for="category-name">Category Unit:</label>
+        <input type="text" id="category-unit" name="category-name" placeholder="kg" required>
 
-<h2>Generated Thumbnails</h2>
-{{#each this.thumbnails}}
-  <img src="https://{{../accountName}}.blob.core.windows.net/{{../containerName}}/{{name}}">
-{{/each}}
+        <input type="submit" value="Submit New Category">
+      </form>
+    </div>
 
-<hr>
-<p>This app has no official privacy policy. Your data will be uploaded to a service in order to produce a thumbnail. Your images will be public once you upload them and there is no automated way to remove them.</p>
+    
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
+    <div id="category-1">
+      <p id="category-1-name">Category 1</p>
+      <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">
+        <label for="value1" class = "label1">Value</label>
+        <input type="number" id="data-input" name="value1" required>
 
-    const message = document.getElementById('message');
-    const picker = document.getElementById('file-picker');
+        <label for="date1" class = "label1">Date</label>
+        <input type="date" id="date-input" name="date1" required>
 
-    document.getElementById('upload-form').addEventListener('submit', (e) => {
+        <input type="submit" value="Submit Data">
+      </form>
+    </div>
 
+<<<<<<< HEAD
       message.innerText = 'Kirby for days';
+=======
+    </br>
 
-  });
-</script>
+    <div id="category-2">
+      <p id="category-2-name">Category 2</p> 
+      <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">  
+        <label for="value2" class = "label2">Value</label>
+        <input type="number" id="data-input" name="value2" required>
+>>>>>>> new-environment
+
+        <label for="date2" class = "label2">Date</label>
+        <input type="date" id="date-input" name="date2" required>
+
+        <input type="submit" value="Submit Data">
+      </form>
+    </div> 
+
+    </br>
+
+    <div id="category-3">
+      <p id="category-3-name">Category 3</p>
+      <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">
+        <label for="value3" class = "label3">Value</label>
+        <input type="number" id="data-input" name="value3" required>
+
+        <label for="date3" class = "label3">Date</label>
+        <input type="date" id="date-input" name="date3" required>
+
+        <input type="submit" value="Submit Data">
+      </form>
+    </div> 
+
+    </br>
+
+    <div id="category-4">
+      <p id="category-4-name">Category 4</p>
+      <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">
+        <label for="value4" class = "label4">Value</label>
+        <input type="number" id="data-input" name="value4" required>
+
+        <label for="date4" class = "label4">Date</label>
+        <input type="date" id="date-input" name="date4" required>
+
+        <input type="submit" value="Submit Data">
+      </form>
+    </div> 
+
+    </br>
+
+    <div id="category-5">
+      <p id="category-5-name">Category 5</p>
+      <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">
+        <label for="value5" class = "label5">Value</label>
+        <input type="number" id="data-input" name="value5" required>
+
+        <label for="date5" class ="label5">Date</label>
+        <input type="date" id="date-input" name="date5" required>
+
+        <input type="submit" value="Submit Data">
+      </form>
+    </div> 
+
+    </br> 
+
+    <div id="category-6">
+      <p id="category-6-name">Category 6</p>
+      <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">
+        <label for="value6" class = "label6">Value</label>
+        <input type="number" id="data-input" name="value6" required>
+
+        <label for="date6" class = "label6">Date</label>
+        <input type="date" id="date-input" name="date6" required>
+
+        <input type="submit" value="Submit Data">
+      </form>
+    </div>
+
+    <div id="Footer">
+      <footer>
+        Team Ashraf has pizza for every meal
+      </footer>
+    </div>
+    
+    <script>
+      
+      document.getElementById('upload-form').addEventListener('submit', (e) => {
+        /*
+        var timesClicked = 0;
+        if(timesClicked == 0){
+          document.getElementById("category-1-name").innerHTML = document.getElementById("category-input").value + 
+                                                                 " (" + document.getElementById("category-unit").value + ")";
+          document.getElementById("button1").disabled = false;
+          timesClicked = timesClicked + 1;
+        }else if (timesClicked == 1){
+          document.getElementById("category-2-name").innerHTML = document.getElementById("category-input").value + 
+                                                                 " (" + document.getElementById("category-unit").value + ")";
+          document.getElementById("button2").disabled = false;
+          timesClicked = timesClicked + 1;
+        }else if (timesClicked == 2){
+          document.getElementById("category-3-name").innerHTML = document.getElementById("category-input").value + 
+                                                                 " (" + document.getElementById("category-unit").value + ")";
+          document.getElementById("button3").disabled = false;
+          timesClicked = timesClicked + 1;
+        }else if (timesClicked == 3){
+          document.getElementById("category-4-name").innerHTML = document.getElementById("category-input").value + 
+                                                                 " (" + document.getElementById("category-unit").value + ")";
+          document.getElementById("button4").disabled = false;
+          timesClicked = timesClicked + 1;
+        }else if (timesClicked == 4){
+          document.getElementById("category-5-name").innerHTML = document.getElementById("category-input").value + 
+                                                                 " (" + document.getElementById("category-unit").value + ")";
+          document.getElementById("button5").disabled = false;
+          timesClicked = timesClicked + 1;
+        }else{
+          document.getElementById("category-6-name").innerHTML = document.getElementById("category-input").value + 
+                                                                 " (" + document.getElementById("category-unit").value + ")";
+          document.getElementById("button6").disabled = false;
+          timesClicked = timesClicked + 1;
+          document.getElementById("newCategoryBtn").disabled = true;
+        }*/
+      });
+      
+      //var userInput = document.getElementById("value1").value + ' ' + document.getElementById("unit1").value + ' ' + document.getElementById("date1").value;
+      //document.getElementById("button1").addEventListener("click", uploadBlob("csds393stg", "test", "Category1", userInput));
+    </script>
+  </body> 
+</html>

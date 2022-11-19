@@ -6,11 +6,12 @@ const
       express = require('express')
     , router = express.Router()
     , { BlobServiceClient } = require("@azure/storage-blob")
-    , blobServiceClient = BlobServiceClient.fromConnectionString('DefaultEndpointsProtocol=https;AccountName=localfittrack;AccountKey=LDUw2jHirnMseOswuFitVVVRrjKCj4+y0cqL8kdhLGXOhZjvOADJ7ldDI/lr6t4h08i5Ah7sS8xo+ASt2NTqEg==;EndpointSuffix=core.windows.net')
-    , containerName = 'localfit'
+    , blobServiceClient = BlobServiceClient.fromConnectionString(process.env.AZURE_STORAGE_CONNECTION_STRING)
+    , containerName = process.env.AZURE_STORAGE_CONTAINER_NAME
     , config = require('../config')
 ;
 
+// GET home page
 router.get('/', async(req, res, next) => {
   let viewData;
   try{
