@@ -11,12 +11,7 @@ const
     , uploadStrategy = multer({ storage: inMemoryStorage }).any('image')
 
     , { AppendBlobClient } = require('@azure/storage-blob')
-<<<<<<< HEAD
-    , getStream = require('into-stream')
-    , containerName = 'localfit'
-=======
     , containerName = process.env.AZURE_STORAGE_CONTAINER_NAME
->>>>>>> new-environment
 ;
 
 const handleError = (err, res) => {
@@ -24,46 +19,13 @@ const handleError = (err, res) => {
     res.render('error', { error: err });
 };
 
-<<<<<<< HEAD
-// const getBlobName = originalName => {
-//     const identifier = Math.random().toString().replace(/0\./, ''); // remove "0." from start of string
-//     return `${identifier}-${originalName}`;
-// };
-// function submitEntries(req, res) {
-//     const body = [];
-//     req.on('data', data => {
-//         console.log('Pushing P');
-//         body.push(data);
-//     });
-
-//     req.on('end', () => {
-//         console.log('Success!');
-//         const requestBody = Buffer.concat(body).toString();
-//         console.log(requestBody);
-//     })
-// }
-
-=======
 const getBlobName = originalName => {
     const identifier = "CLIENTID"; // Make client identity
     return `${identifier}/${originalName}.txt`;
 };
->>>>>>> new-environment
 
 // POST upload page
 router.post('/', uploadStrategy, (req, res) => {
-<<<<<<< HEAD
-
-    const
-          blobName = "file.txt"
-        , blobService = new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,blobName)
-    ;
-    
-    blobService.createIfNotExists();
-    blobService.appendBlock(req.body['image'] + '\n', (req.body['image'] + '\n').length)
-    .then(
-        ()=>{
-=======
     const blobService = [];
     // Creates blob representing category 1
     blobService.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,getBlobName('Category1')));
@@ -74,7 +36,6 @@ router.post('/', uploadStrategy, (req, res) => {
     // Check if category 6 exists (if so, don't upload anything because all 6 categories have been entered)
     blobService[5].exists().then(async(exists) => {
         if(exists){
->>>>>>> new-environment
             res.render('success', { 
                 message: 'You have already reached the maximum category limit.' 
             });
