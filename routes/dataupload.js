@@ -24,6 +24,7 @@ const getBlobName = originalName => {
     return `${identifier}/${originalName}.txt`;
 };
 
+// POST dataupload page
 router.post('/', uploadStrategy, (req, res) => {
     const blobService = [];
     
@@ -33,11 +34,12 @@ router.post('/', uploadStrategy, (req, res) => {
     }
     
     for(let i = 1; i <= 6; i++){
-        if(req.body[('value' + i)] != ''){
+        if(req.body[('value' + i)]){
             let value = req.body[('value' + i)] + ' ';
-            let date = req.body[('date' + i)] + ' ';
-            blobService[i - 1].appendBlock(value, value.length).catch((err)=>{if(err) {handleError(err);return;}});
-            blobService[i - 1].appendBlock(date, date.length).catch((err)=>{if(err) {handleError(err);return;}});
+            let date = req.body[('date' + i)] + '\n';
+            console.log(req.body[('value' + i)]);
+            blobService[i - 1].appendBlock(value, value.length).catch((err)=>{if(err) {handleError(err,res);return;}});
+            blobService[i - 1].appendBlock(date, date.length).catch((err)=>{if(err) {handleError(err,res);return;}});
         }
     }
     res.render('success', { 

@@ -49,7 +49,7 @@ router.post('/', uploadStrategy, (req, res) => {
                     console.log('Category1 does not exist -> Create it.');
                     blobService[0].create();
                     blobService[0].appendBlock(str, str.length).then(()=>{})
-                    .catch((err)=>{if(err) {handleError(err);return;}});
+                    .catch((err)=>{if(err) {handleError(err,res);return;}});
                 }
                 else{ // If category 1 does not exist, for each blob after one, only create it if the one before exists
                     console.log('Category1 exists -> Create next available category.');
@@ -64,19 +64,19 @@ router.post('/', uploadStrategy, (req, res) => {
                                         console.log('Category' + (i+2) + ' does not exist -> Create it.');
                                         await blobService[i+1].create();
                                         await blobService[i+1].appendBlock(str, str.length).then(()=>{})
-                                        .catch((err)=>{if(err) {handleError(err);return;}});
+                                        .catch((err)=>{if(err) {handleError(err,res);return;}});
                                     }
                                     else{
                                         console.log('Category' + (i+2) + ' exists -> Don\'t overwrite it.');
                                     }
                                 })
-                                .catch((err)=>{if(err) {handleError(err);return;}});
+                                .catch((err)=>{if(err) {handleError(err,res);return;}});
                             }
                             else{
                                 console.log('Category' + (i+1) + ' does not exist -> Check Category'+ (i) + '.');
                             }
                         })
-                        .catch((err)=>{if(err) {handleError(err);return;}})
+                        .catch((err)=>{if(err) {handleError(err,res);return;}})
                     }
                 }
             })
