@@ -14,6 +14,9 @@
         
         <label for="category-name">Category Unit:</label>
         <input type="text" id="category-unit" name="category-name" placeholder="kg" required>
+        
+        <label for="category-name">Category Goal:</label>
+        <input type="number" id="category-goal" name="category-name" placeholder="60.0" required>
 
         <input type="submit" value="Submit New Category">
       </form>
@@ -114,6 +117,14 @@
         Team Ashraf has pizza for every meal
       </footer>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js">
+      const jsConfetti = new JSConfetti();
+      function makeConfetti(){
+        jsConfetti.addConfetti();
+      }
+      //TODO: CALL MAKECONFETTI FUNCTION WHEN THE GOAL IS MET.
+    </script>
     
     <script>
       

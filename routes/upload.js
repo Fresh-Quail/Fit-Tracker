@@ -41,7 +41,7 @@ router.post('/', uploadStrategy, (req, res) => {
             });
         }
         else{
-            let str = req.body['category-name'][0]+'\n'+req.body['category-name'][1]+'\n';
+            let str = req.body['category-name'][0]+'\n'+req.body['category-name'][1]+'\n'+req.body['category-name'][2]+'\n';
             // The creation of categorgy 1 (only if it does not exist) ------------------------------
             await blobService[0].exists().then(async(exists) => {
                 // If category 1 does not exist, create it and then break
