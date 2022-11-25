@@ -19,18 +19,16 @@ const handleError = (err, res) => {
     res.render('error', { error: err });
 };
 
-const getBlobName = originalName => {
-    const identifier = "CLIENTID"; // Make client identity
+const getBlobName = (identifier, originalName) => {
     return `${identifier}/${originalName}.txt`;
 };
 
 // POST dataupload page
 router.post('/', uploadStrategy, (req, res) => {
     const blobService = [];
-    
     // Creates blob categories 1 through 6
     for(let i = 1; i <= 6; i++){ // Possible error: These variable declarations might not happen before appending data to blobs
-        blobService.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,getBlobName('Category' + i)));
+        blobService.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,getBlobName(req.body['key'], 'Category' + i)));
     }
     
     for(let i = 1; i <= 6; i++){

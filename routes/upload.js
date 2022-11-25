@@ -19,19 +19,19 @@ const handleError = (err, res) => {
     res.render('error', { error: err });
 };
 
-const getBlobName = originalName => {
-    const identifier = "CLIENTID"; // Make client identity
+const getBlobName = (identifier, originalName) => {
     return `${identifier}/${originalName}.txt`;
 };
 
 // POST upload page
 router.post('/', uploadStrategy, (req, res) => {
     const blobService = [];
+    const userID = req.body['category-name'][3];
     // Creates blob representing category 1
-    blobService.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,getBlobName('Category1')));
+    blobService.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,getBlobName(userID, 'Category1')));
     // Creates blobs representing categories 2 through 6
     for(let i = 2; i <= 6; i++){
-        blobService.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,getBlobName('Category' + i)));
+        blobService.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,getBlobName(userID, 'Category' + i)));
     }
     // Check if category 6 exists (if so, don't upload anything because all 6 categories have been entered)
     blobService[5].exists().then(async(exists) => {
