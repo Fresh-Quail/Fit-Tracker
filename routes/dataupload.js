@@ -35,11 +35,9 @@ router.post('/', uploadStrategy, (req, res) => {
     
     for(let i = 1; i <= 6; i++){
         if(req.body[('value' + i)]){
-            let value = req.body[('value' + i)] + ' ';
-            let date = req.body[('date' + i)] + '\n';
-            console.log(req.body[('value' + i)]);
-            blobService[i - 1].appendBlock(value, value.length).catch((err)=>{if(err) {handleError(err,res);return;}});
-            blobService[i - 1].appendBlock(date, date.length).catch((err)=>{if(err) {handleError(err,res);return;}});
+            let entry = req.body[('value' + i)] + ' ' + req.body[('date' + i)] + '\n';
+            console.log(entry);
+            blobService[i - 1].appendBlock(entry, entry.length).catch((err)=>{if(err) {handleError(err,res);return;}});
         }
     }
     res.render('success', { 

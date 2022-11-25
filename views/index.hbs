@@ -16,7 +16,7 @@
         <input type="text" id="category-unit" name="category-name" placeholder="kg" required>
         
         <label for="category-name">Category Goal:</label>
-        <input type="number" id="category-goal" name="category-name" placeholder="60.0" required>
+        <input type="number" id="category-goal" step="0.01" name="category-name" placeholder="60.0" required>
 
         <input type="submit" value="Submit New Category">
       </form>
@@ -127,7 +127,6 @@
     </script>
     
     <script>
-      
       document.getElementById('upload-form').addEventListener('submit', (e) => {
         /*
         var timesClicked = 0;
