@@ -6,17 +6,6 @@
     <hr width="90%">
     <p>Welcome to FitTracker! </br>To begin, please create a new category and enter in your data.</p>
 
-    <div id="case-ID">
-      <form id="upload-ID" action="/upload" method="POST" enctype="multipart/form-data">
-        <label for="case-ID">Enter Case ID</label>
-        <input type="text" id="case-ID-input" name="case-ID" placeholder="abc123" required>
-
-        <input type="submit" value="Submit Case ID">
-      </form>
-
-
-    </div>
-
     <div id="new-category">
       <!-- <form action="" method="" class = "intro"> -->
       <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
@@ -39,7 +28,7 @@
       <p id="category-1-name">Category 1</p>
       <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">
         <label for="value1" class = "label1">Value</label>
-        <input type="number" id="data-input" name="value1" required>
+        <input type="number" step="0.01" id="data-input" name="value1" required>
 
         <label for="date1" class = "label1">Date</label>
         <input type="date" id="date-input" name="date1" required>
@@ -54,7 +43,7 @@
       <p id="category-2-name">Category 2</p> 
       <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">  
         <label for="value2" class = "label2">Value</label>
-        <input type="number" id="data-input" name="value2" required>
+        <input type="number" step="0.01" id="data-input" name="value2" required>
 
         <label for="date2" class = "label2">Date</label>
         <input type="date" id="date-input" name="date2" required>
@@ -69,7 +58,7 @@
       <p id="category-3-name">Category 3</p>
       <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">
         <label for="value3" class = "label3">Value</label>
-        <input type="number" id="data-input" name="value3" required>
+        <input type="number" step="0.01" id="data-input" name="value3" required>
 
         <label for="date3" class = "label3">Date</label>
         <input type="date" id="date-input" name="date3" required>
@@ -84,7 +73,7 @@
       <p id="category-4-name">Category 4</p>
       <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">
         <label for="value4" class = "label4">Value</label>
-        <input type="number" id="data-input" name="value4" required>
+        <input type="number" step="0.01" id="data-input" name="value4" required>
 
         <label for="date4" class = "label4">Date</label>
         <input type="date" id="date-input" name="date4" required>
@@ -99,7 +88,7 @@
       <p id="category-5-name">Category 5</p>
       <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">
         <label for="value5" class = "label5">Value</label>
-        <input type="number" id="data-input" name="value5" required>
+        <input type="number" step="0.01" id="data-input" name="value5" required>
 
         <label for="date5" class ="label5">Date</label>
         <input type="date" id="date-input" name="date5" required>
@@ -114,7 +103,7 @@
       <p id="category-6-name">Category 6</p>
       <form id="upload-data" action="/dataupload" method="POST" enctype="multipart/form-data">
         <label for="value6" class = "label6">Value</label>
-        <input type="number" id="data-input" name="value6" required>
+        <input type="number" step="0.01" id="data-input" name="value6" required>
 
         <label for="date6" class = "label6">Date</label>
         <input type="date" id="date-input" name="date6" required>
@@ -178,6 +167,5 @@
       //var userInput = document.getElementById("value1").value + ' ' + document.getElementById("unit1").value + ' ' + document.getElementById("date1").value;
       //document.getElementById("button1").addEventListener("click", uploadBlob("csds393stg", "test", "Category1", userInput));
     </script>
-    
   </body> 
 </html>

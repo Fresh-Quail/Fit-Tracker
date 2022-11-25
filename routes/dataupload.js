@@ -24,6 +24,7 @@ const getBlobName = originalName => {
     return `${identifier}/${originalName}.txt`;
 };
 
+// POST dataupload page
 router.post('/', uploadStrategy, (req, res) => {
     const blobService = [];
     
