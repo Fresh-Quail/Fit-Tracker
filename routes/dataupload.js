@@ -24,24 +24,25 @@ const getBlobName = (identifier, originalName) => {
 };
 
 // POST dataupload page
+// Possible error: These variable declarations might not happen before appending data to blobs due to synchronocity
+// Solution: Create async method(s) with await statements in them containing code below
 router.post('/', uploadStrategy, (req, res) => {
-    const blobService = [];
+    const appendBlobs = [];
     // Creates blob categories 1 through 6
-    for(let i = 1; i <= 6; i++){ // Possible error: These variable declarations might not happen before appending data to blobs
-        blobService.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,getBlobName(req.body['key'], 'Category' + i)));
+    for(let i = 1; i <= 6; i++){
+        appendBlobs.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,getBlobName(req.body['key'], 'Category' + i)));
     }
     
     for(let i = 1; i <= 6; i++){
         if(req.body[('value' + i)]){
             let entry = req.body[('value' + i)] + ' ' + req.body[('date' + i)] + '\n';
             console.log(entry);
-            blobService[i - 1].appendBlock(entry, entry.length).catch((err)=>{if(err) {handleError(err,res);return;}});
+            appendBlobs[i - 1].appendBlock(entry, entry.length).catch((err)=>{if(err) {handleError(err,res);return;}});
         }
     }
     res.render('success', { 
         message: 'Your data point has been stored successfully.' 
     });
-    
 });
 
 module.exports = router;
