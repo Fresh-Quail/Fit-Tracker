@@ -61,8 +61,11 @@ router.get('/', async(req, res, next) => {
         res.status(500);
     }
   res.render(viewData.viewName, viewData);
-});
+}); 
 
-
+// Get data display page
+router.get('/data-display', function(req, res) {
+  res.render('data-display', { title: 'Express' });
+});  
 
 module.exports = router;

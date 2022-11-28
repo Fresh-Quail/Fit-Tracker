@@ -3,11 +3,11 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); 
 
 const index = require('./routes/index');
 const upload = require('./routes/upload');
-const dataupload = require('./routes/dataupload');
+const dataupload = require('./routes/dataupload'); 
 
 const app = express();
 
@@ -24,7 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/upload', upload);
-app.use('/dataupload', dataupload);
+app.use('/dataupload', dataupload);  
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

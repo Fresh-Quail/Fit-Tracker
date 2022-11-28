@@ -15,8 +15,7 @@ const
 ;
 
 const handleError = (err, res) => {
-    res.status(500);
-    res.render('error', { error: err });
+    res.status(500).render('error', { error: err });
 };
 
 const getBlobName = (identifier, originalName) => {
