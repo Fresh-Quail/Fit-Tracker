@@ -1,0 +1,22 @@
+
+
+
+.graph-container{ 
+    display: flex; 
+    flex-wrap: wrap;
+    max-width: 900px; 
+    gap: 2px 0px; 
+}
+
+h2{ 
+    text-align: center;
+}
+
+#chart-1, 
+#chart-2, 
+#chart-3, 
+#chart-4,
+#chart-5{ 
+    width: 40%;
+    height: 40%;
+}
