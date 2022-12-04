@@ -40,27 +40,57 @@ if (process.env.NODE_ENV !== 'production') {
   const getBlobName = (identifier, originalName) => {
       return `${identifier}/${originalName}.txt`;
   };
-  
-  // GET data-display page
+ 
+  async function bajongas(jigglers){
+    var milkers = {
+        valueArray: [],
+        blobCategoryAndUnit: "",
+        goal: 0,
+        exists: false
+    };
+    // Find all tab indices in string because this is how data is separated
+    var tabs = [];
+    for (var i = 0; i < jigglers.length; i++) {
+        if (jigglers.charAt(i) == '\t') {
+            tabs.push(i);
+        }
+    }
+    milkers.blobCategoryAndUnit = "'" + jigglers.substring(0, tabs[0]) + " (" + jigglers.substring(tabs[0]+1, tabs[1]) + ")'";
+    milkers.goal = parseInt(jigglers.substring(tabs[1], tabs[2]));
+    for (var i = 2; i < tabs.length - 1; i++) { // Use tabs.length - 1 because last tab is after all inputted data
+        var valueAndDate = jigglers.substring(tabs[i]+1, tabs[i+1]);
+        var spaceIndex = valueAndDate.indexOf(' ');
+        milkers.valueArray.push("[['" + valueAndDate.substring(spaceIndex) + "', " + valueAndDate.substring(0, spaceIndex) + "]]");
+    }
+    return milkers;
+  }
+
+  // POST data-display page
   router.post('/', uploadStrategy, async(req, res) => {
 
     const appendBlobs = [];
     // Dictionary of the strings representing each category
-    var blobStrings = {
-        category1:'',
-        category2:'',
-        category3:'',
-        category4:'',
-        category5:'',
-        category6:''
+    var jugs = {
+        exists1: true,
+        exists2: true,
+        exists3: true,
+        exists4: true,
+        exists5: true,
+        exists6: true
     };
 
     // Creates blob categories 1 through 6
     for(let i = 1; i <= 6; i++){
         const blobName = getBlobName(req.body['key'], 'Category' + i);
         appendBlobs.push(new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,blobName));
-        await appendBlobs[i-1].exists().then( async(sex) => {if(sex) {blobStrings.category1 = "\"" + await getBlobContent(blobName) + "\"";}});
     }
+    await appendBlobs[0].exists().then( async(sex) => {if(sex) {jugs.category1 = await bajongas(await getBlobContent(getBlobName(req.body['key'], 'Category1')));}else{jugs.exists1 = false;}});
+    await appendBlobs[1].exists().then( async(sex) => {if(sex) {jugs.category2 = await bajongas(await getBlobContent(getBlobName(req.body['key'], 'Category2')));}else{jugs.exists2 = false;}});
+    await appendBlobs[2].exists().then( async(sex) => {if(sex) {jugs.category3 = await bajongas(await getBlobContent(getBlobName(req.body['key'], 'Category3')));}else{jugs.exists3 = false;}});
+    await appendBlobs[3].exists().then( async(sex) => {if(sex) {jugs.category4 = await bajongas(await getBlobContent(getBlobName(req.body['key'], 'Category4')));}else{jugs.exists4 = false;}});
+    await appendBlobs[4].exists().then( async(sex) => {if(sex) {jugs.category5 = await bajongas(await getBlobContent(getBlobName(req.body['key'], 'Category5')));}else{jugs.exists5 = false;}});
+    await appendBlobs[5].exists().then( async(sex) => {if(sex) {jugs.category6 = await bajongas(await getBlobContent(getBlobName(req.body['key'], 'Category6')));}else{jugs.exists6 = false;}});
+
     // await appendBlobs[0].exists().then( () => {blobStrings.category1 = getBlobContent(appendBlobs[0])});
     // await appendBlobs[1].exists().then( () => {blobStrings.category2 = getBlobContent(appendBlobs[1])});
     // await appendBlobs[2].exists().then( () => {blobStrings.category3 = getBlobContent(appendBlobs[2])});
@@ -68,7 +98,7 @@ if (process.env.NODE_ENV !== 'production') {
     // await appendBlobs[4].exists().then( () => {blobStrings.category5 = getBlobContent(appendBlobs[4])});
     // await appendBlobs[5].exists().then( () => {blobStrings.category6 = getBlobContent(appendBlobs[5])});
 
-    res.render('data-display', blobStrings);
+    res.render('data-display', jugs);
   }); 
   
 //   // Get data display page
