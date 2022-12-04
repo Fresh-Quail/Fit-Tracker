@@ -1,4 +1,4 @@
-import { getBlobContent} from './index.js';
+import { getBlobContent} from './datadisplay';
 
 
 var blobContents = getBlobContent("Category1");
