@@ -22,7 +22,7 @@
     </div>
     <script type = "text/javascript">  
         document.getElementById("goBack").addEventListener('click', () => { 
-            window.location = './';
+          window.location = './';
         });
         google.charts.load('current', {'packages':['corechart']}); 
         
@@ -30,163 +30,134 @@
           google.charts.setOnLoadCallback(function() {
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Date');
-            data.addColumn('number', 'Value'); 
+            data.addColumn('number', 'Value');
 
-            data.addRows( [ 
-            ['12-30-2015',11],
-            ['12-31-2015', 3],
-            ['01-01-2016', 6],
-            ['01-02-2016', 8],
-            ['01-03-2016', 3], 
-            ['01-04-2015', 3],
-            ['01-05-2016', 6],
-            ['01-06-2016', 8],
-            ['01-07-2016', 3], 
-            ['01-08-2016', 3], 
-            ['01-09-2016', 3], 
-            ['01-10-2016', 3]
-            ])
-       
-             var options = {
-               title: 'Fit-Tracker-Chart1', 
-               width: 400,
-               height: 300, 
-               hAxis: { slantedText:true, slantedTextAngle:45 }
-             };
-       
-             var chart = new   
-             google.visualization.LineChart(document.getElementById('chart-1'));
-       
-             chart.draw(data, options); 
-             //google.charts.setOnLoadCallback(drawChart); 
-            })};
+            {{#each this.category1.valueArray}}
+              data.addRows({{{this}}});
+            {{/each}}
+            var options = {
+              width: 400,
+              height: 300, 
+              hAxis: { slantedText:true, slantedTextAngle:45 }
+            };
+            options.title ={{{this.category1.blobCategoryAndUnit}}}+"";
 
-           function chart2() {
-            google.charts.setOnLoadCallback(function() {
-             var data = new google.visualization.DataTable();
-             data.addColumn('string', 'Date');
-             data.addColumn('number', 'Value');  
-             data.addRows([
-             ['02-01-2016',11],
-             ['02-03-2016', 3],
-             ['02-05-2016', 6],
-             ['02-05-2016', 8],
-             ['02-05-2016', 3]
-             ]);
-       
-             var options = {
-             title: 'Fit-Tracker-Chart2', 
-             width: 400,
-             height: 300, 
-             hAxis: { slantedText:true, slantedTextAngle:45 }
-             };
-       
-             var chart = new google.visualization.LineChart(document.getElementById('chart-2'));
-             chart.draw(data, options);
-           })}  
-       
-          function chart3() {  
+            var chart = new google.visualization.LineChart(document.getElementById('chart-1'));
+            chart.draw(data, options);
+          })
+        };
+
+        function chart2() {
           google.charts.setOnLoadCallback(function() {
             var data = new google.visualization.DataTable();
-             data.addColumn('string', 'Date');
-             data.addColumn('number', 'Value');  
-             data.addRows([
-             ['02-01-2016',11],
-             ['02-03-2016', 3],
-             ['02-05-2016', 6],
-             ['02-05-2016', 8],
-             ['02-05-2016', 3]
-             ]);
+            data.addColumn('string', 'Date');
+            data.addColumn('number', 'Value');
+
+            {{#each this.category2.valueArray}}
+              data.addRows({{{this}}});
+            {{/each}}
+            var options = {
+              width: 400,
+              height: 300, 
+              hAxis: { slantedText:true, slantedTextAngle:45 }
+            };
+            options.title ={{{this.category2.blobCategoryAndUnit}}}+"";
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart-2'));
+            chart.draw(data, options);
+          })
+        };
        
-             var options = {
-             title: 'Fit-Tracker-Chart3', 
-             width: 400,
-             height: 300, 
-             hAxis: { slantedText:true, slantedTextAngle:45 }
-             };
-             var chart = new google.visualization.LineChart(document.getElementById('chart-3'));
-             chart.draw(data, options); 
-          })}; 
-       
-          function chart4() { 
+        function chart3() {  
           google.charts.setOnLoadCallback(function() {
             var data = new google.visualization.DataTable();
-             data.addColumn('string', 'Date');
-             data.addColumn('number', 'Value');  
-             data.addRows([
-             ['02-01-2016',11],
-             ['02-03-2016', 3],
-             ['02-05-2016', 6],
-             ['02-05-2016', 8],
-             ['02-05-2016', 3]
-             ]);
+            data.addColumn('string', 'Date');
+            data.addColumn('number', 'Value');
+
+            {{#each this.category3.valueArray}}
+              data.addRows({{{this}}});
+            {{/each}}
+            var options = {
+              width: 400,
+              height: 300, 
+              hAxis: { slantedText:true, slantedTextAngle:45 }
+            };
+            options.title ={{{this.category3.blobCategoryAndUnit}}}+"";
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart-3'));
+            chart.draw(data, options); 
+          })
+        }; 
        
-           var options = {
-           title: 'Fit-Tracker-Chart4',
-           width: 400,
-           height: 300, 
-           hAxis: { slantedText:true, slantedTextAngle:45 }
-           };
-           var chart = new google.visualization.LineChart(document.getElementById('chart-4'));
-           chart.draw(data, options); 
-          })};  
-       
-       function chart5() { 
-        google.charts.setOnLoadCallback(function() {
-         var data = new google.visualization.DataTable();
+        function chart4() { 
+          google.charts.setOnLoadCallback(function() {
+            var data = new google.visualization.DataTable();
             data.addColumn('string', 'Date');
             data.addColumn('number', 'Value');  
-            data.addRows([
-            ['02-01-2016',11],
-            ['02-03-2016', 3],
-            ['02-05-2016', 6],
-            ['02-05-2016', 8],
-            ['02-05-2016', 3]
-            ]);
-       
-         var options = {
-         title: 'Fit-Tracker-Chart5', 
-         width: 400, 
-         height: 300, 
-         hAxis: { slantedText:true, slantedTextAngle:45 }
-         };
-         var chart = new google.visualization.LineChart(document.getElementById('chart-5'));
-         chart.draw(data, options);  
-       
-        })}; 
 
-     function chart6() { 
-        google.charts.setOnLoadCallback(function() {
-         var data = new google.visualization.DataTable();
+            {{#each this.category4.valueArray}}
+              data.addRows({{{this}}});
+            {{/each}}
+            var options = {
+              width: 400,
+              height: 300, 
+              hAxis: { slantedText:true, slantedTextAngle:45 }
+            };
+            options.title ={{{this.category4.blobCategoryAndUnit}}}+"";
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart-4'));
+            chart.draw(data, options); 
+          })
+        };
+       
+        function chart5() { 
+          google.charts.setOnLoadCallback(function() {
+            var data = new google.visualization.DataTable();
             data.addColumn('string', 'Date');
             data.addColumn('number', 'Value');  
-            data.addRows([
-            ['02-01-2016',11],
-            ['02-03-2016', 3],
-            ['02-05-2016', 6],
-            ['02-05-2016', 8],
-            ['02-05-2016', 3]
-            ]);
-       
-         var options = {
-         title: 'Fit-Tracker-Chart6', 
-         width: 400, 
-         height: 300, 
-         hAxis: { slantedText:true, slantedTextAngle:45 }
-         };
-         var chart = new google.visualization.LineChart(document.getElementById('chart-6'));
-         chart.draw(data, options);  
-       
-        })}; 
 
+            {{#each this.category5.valueArray}}
+              data.addRows({{{this}}});
+            {{/each}}
+            var options = {
+              width: 400,
+              height: 300, 
+              hAxis: { slantedText:true, slantedTextAngle:45 }
+            };
+            options.title ={{{this.category5.blobCategoryAndUnit}}}+"";
 
+            var chart = new google.visualization.LineChart(document.getElementById('chart-5'));
+            chart.draw(data, options);  
+          })
+        }; 
 
-       chart1();
-       chart2();
-       chart3();
-       chart4();
-       chart5(); 
-       chart6();
+        function chart6() { 
+          google.charts.setOnLoadCallback(function() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Date');
+            data.addColumn('number', 'Value');  
+
+            {{#each this.category6.valueArray}}
+              data.addRows({{{this}}});
+            {{/each}}
+            var options = {
+              width: 400,
+              height: 300, 
+              hAxis: { slantedText:true, slantedTextAngle:45 }
+            };
+            options.title ={{{this.category6.blobCategoryAndUnit}}}+ "";
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart-6'));
+            chart.draw(data, options);
+          })
+        }; 
+
+        if ({{{this.exists1}}}) chart1();
+        if ({{{this.exists2}}}) chart2();
+        if ({{{this.exists3}}}) chart3();
+        if ({{{this.exists4}}}) chart4();
+        if ({{{this.exists5}}}) chart5();
+        if ({{{this.exists6}}}) chart6();
       </script> 
 </body>
 </html>
