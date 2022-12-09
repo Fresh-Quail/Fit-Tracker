@@ -24,16 +24,21 @@
         document.getElementById("goBack").addEventListener('click', () => { 
           window.location = './';
         });
-        google.charts.load('current', {'packages':['corechart']}); 
-        
+        google.charts.load('current', {'packages':['corechart']});
+
         function chart1() {
           google.charts.setOnLoadCallback(function() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Date');
-            data.addColumn('number', 'Value');
+            var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', 'Date');
+            data1.addColumn('number', 'Value'); 
 
+            var data2 = new google.visualization.DataTable(); 
+            data2.addColumn('string', 'Date');   
+            data2.addColumn('number', 'Goal');
+            var goal = {{{this.category1.goal}}};
             {{#each this.category1.valueArray}}
-              data.addRows({{{this}}});
+              data1.addRows({{{this}}});
+              data2.addRows([[{{{this}}}[0][0], goal]]);
             {{/each}}
             var options = {
               width: 400,
@@ -42,19 +47,28 @@
             };
             options.title ={{{this.category1.blobCategoryAndUnit}}}+"";
 
+
+
+            var joinedData = google.visualization.data.join(data1, data2, 'full', [[0, 0]], [1], [1]);
             var chart = new google.visualization.LineChart(document.getElementById('chart-1'));
-            chart.draw(data, options);
+            chart.draw(joinedData, options);
+
           })
         };
 
         function chart2() {
           google.charts.setOnLoadCallback(function() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Date');
-            data.addColumn('number', 'Value');
+            var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', 'Date');
+            data1.addColumn('number', 'Value'); 
 
+            var data2 = new google.visualization.DataTable(); 
+            data2.addColumn('string', 'Date');   
+            data2.addColumn('number', 'Goal');
+            var goal = {{{this.category2.goal}}};
             {{#each this.category2.valueArray}}
-              data.addRows({{{this}}});
+              data1.addRows({{{this}}});
+              data2.addRows([[{{{this}}}[0][0], goal]]);
             {{/each}}
             var options = {
               width: 400,
@@ -63,19 +77,28 @@
             };
             options.title ={{{this.category2.blobCategoryAndUnit}}}+"";
 
+
+
+            var joinedData = google.visualization.data.join(data1, data2, 'full', [[0, 0]], [1], [1]);
             var chart = new google.visualization.LineChart(document.getElementById('chart-2'));
-            chart.draw(data, options);
+            chart.draw(joinedData, options);
+
           })
         };
-       
-        function chart3() {  
-          google.charts.setOnLoadCallback(function() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Date');
-            data.addColumn('number', 'Value');
 
+        function chart3() {
+          google.charts.setOnLoadCallback(function() {
+            var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', 'Date');
+            data1.addColumn('number', 'Value'); 
+
+            var data2 = new google.visualization.DataTable(); 
+            data2.addColumn('string', 'Date');   
+            data2.addColumn('number', 'Goal');
+            var goal = {{{this.category3.goal}}};
             {{#each this.category3.valueArray}}
-              data.addRows({{{this}}});
+              data1.addRows({{{this}}});
+              data2.addRows([[{{{this}}}[0][0], goal]]);
             {{/each}}
             var options = {
               width: 400,
@@ -84,19 +107,28 @@
             };
             options.title ={{{this.category3.blobCategoryAndUnit}}}+"";
 
-            var chart = new google.visualization.LineChart(document.getElementById('chart-3'));
-            chart.draw(data, options); 
-          })
-        }; 
-       
-        function chart4() { 
-          google.charts.setOnLoadCallback(function() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Date');
-            data.addColumn('number', 'Value');  
 
+
+            var joinedData = google.visualization.data.join(data1, data2, 'full', [[0, 0]], [1], [1]);
+            var chart = new google.visualization.LineChart(document.getElementById('chart-3'));
+            chart.draw(joinedData, options);
+
+          })
+        };
+
+        function chart4() {
+          google.charts.setOnLoadCallback(function() {
+            var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', 'Date');
+            data1.addColumn('number', 'Value'); 
+
+            var data2 = new google.visualization.DataTable(); 
+            data2.addColumn('string', 'Date');   
+            data2.addColumn('number', 'Goal');
+            var goal = {{{this.category4.goal}}};
             {{#each this.category4.valueArray}}
-              data.addRows({{{this}}});
+              data1.addRows({{{this}}});
+              data2.addRows([[{{{this}}}[0][0], goal]]);
             {{/each}}
             var options = {
               width: 400,
@@ -105,19 +137,28 @@
             };
             options.title ={{{this.category4.blobCategoryAndUnit}}}+"";
 
+
+
+            var joinedData = google.visualization.data.join(data1, data2, 'full', [[0, 0]], [1], [1]);
             var chart = new google.visualization.LineChart(document.getElementById('chart-4'));
-            chart.draw(data, options); 
+            chart.draw(joinedData, options);
+
           })
         };
-       
-        function chart5() { 
-          google.charts.setOnLoadCallback(function() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Date');
-            data.addColumn('number', 'Value');  
 
+        function chart5() {
+          google.charts.setOnLoadCallback(function() {
+            var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', 'Date');
+            data1.addColumn('number', 'Value'); 
+
+            var data2 = new google.visualization.DataTable(); 
+            data2.addColumn('string', 'Date');   
+            data2.addColumn('number', 'Goal');
+            var goal = {{{this.category5.goal}}};
             {{#each this.category5.valueArray}}
-              data.addRows({{{this}}});
+              data1.addRows({{{this}}});
+              data2.addRows([[{{{this}}}[0][0], goal]]);
             {{/each}}
             var options = {
               width: 400,
@@ -126,31 +167,44 @@
             };
             options.title ={{{this.category5.blobCategoryAndUnit}}}+"";
 
+
+
+            var joinedData = google.visualization.data.join(data1, data2, 'full', [[0, 0]], [1], [1]);
             var chart = new google.visualization.LineChart(document.getElementById('chart-5'));
-            chart.draw(data, options);  
+            chart.draw(joinedData, options);
+
           })
-        }; 
+        };
 
-        function chart6() { 
+        function chart6() {
           google.charts.setOnLoadCallback(function() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Date');
-            data.addColumn('number', 'Value');  
+            var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', 'Date');
+            data1.addColumn('number', 'Value'); 
 
+            var data2 = new google.visualization.DataTable(); 
+            data2.addColumn('string', 'Date');   
+            data2.addColumn('number', 'Goal');
+            var goal = {{{this.category6.goal}}};
             {{#each this.category6.valueArray}}
-              data.addRows({{{this}}});
+              data1.addRows({{{this}}});
+              data2.addRows([[{{{this}}}[0][0], goal]]);
             {{/each}}
             var options = {
               width: 400,
               height: 300, 
               hAxis: { slantedText:true, slantedTextAngle:45 }
             };
-            options.title ={{{this.category6.blobCategoryAndUnit}}}+ "";
+            options.title ={{{this.category6.blobCategoryAndUnit}}}+"";
 
+
+
+            var joinedData = google.visualization.data.join(data1, data2, 'full', [[0, 0]], [1], [1]);
             var chart = new google.visualization.LineChart(document.getElementById('chart-6'));
-            chart.draw(data, options);
+            chart.draw(joinedData, options);
+
           })
-        }; 
+        };
 
         if ({{{this.exists1}}}) chart1();
         if ({{{this.exists2}}}) chart2();
