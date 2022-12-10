@@ -35,7 +35,7 @@
             var data2 = new google.visualization.DataTable(); 
             data2.addColumn('string', 'Date');   
             data2.addColumn('number', 'Goal');
-            var goal = {{{this.category1.goal}}};
+            var goal = {{{this.category1.goal}}}+0;
             {{#each this.category1.valueArray}}
               data1.addRows({{{this}}});
               data2.addRows([[{{{this}}}[0][0], goal]]);
@@ -65,7 +65,7 @@
             var data2 = new google.visualization.DataTable(); 
             data2.addColumn('string', 'Date');   
             data2.addColumn('number', 'Goal');
-            var goal = {{{this.category2.goal}}};
+            var goal = {{{this.category2.goal}}}+0;
             {{#each this.category2.valueArray}}
               data1.addRows({{{this}}});
               data2.addRows([[{{{this}}}[0][0], goal]]);
@@ -95,7 +95,7 @@
             var data2 = new google.visualization.DataTable(); 
             data2.addColumn('string', 'Date');   
             data2.addColumn('number', 'Goal');
-            var goal = {{{this.category3.goal}}};
+            var goal = {{{this.category3.goal}}}+0;
             {{#each this.category3.valueArray}}
               data1.addRows({{{this}}});
               data2.addRows([[{{{this}}}[0][0], goal]]);
@@ -125,7 +125,7 @@
             var data2 = new google.visualization.DataTable(); 
             data2.addColumn('string', 'Date');   
             data2.addColumn('number', 'Goal');
-            var goal = {{{this.category4.goal}}};
+            var goal = {{{this.category4.goal}}}+0;
             {{#each this.category4.valueArray}}
               data1.addRows({{{this}}});
               data2.addRows([[{{{this}}}[0][0], goal]]);
@@ -155,7 +155,7 @@
             var data2 = new google.visualization.DataTable(); 
             data2.addColumn('string', 'Date');   
             data2.addColumn('number', 'Goal');
-            var goal = {{{this.category5.goal}}};
+            var goal = {{{this.category5.goal}}}+0;
             {{#each this.category5.valueArray}}
               data1.addRows({{{this}}});
               data2.addRows([[{{{this}}}[0][0], goal]]);
@@ -185,7 +185,7 @@
             var data2 = new google.visualization.DataTable(); 
             data2.addColumn('string', 'Date');   
             data2.addColumn('number', 'Goal');
-            var goal = {{{this.category6.goal}}};
+            var goal = {{{this.category6.goal}}}+0;
             {{#each this.category6.valueArray}}
               data1.addRows({{{this}}});
               data2.addRows([[{{{this}}}[0][0], goal]]);
