@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
     {{!-- Centers the image --}}
-    <head> <title>The Animation Page</title>
+    <head> <title>The Rewards Page</title>
     <style>
-    #image {
-        margin: auto;
-        width: 50%;
-        border: 1px solid blueviolet;
-        padding: 10px;
-    }
+        #image{
+            display:block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 20%;
+        }
+        #href{
+        }
     </style>
     </head>
 
@@ -16,14 +18,16 @@
         
     <h2>Congratulations!</h2>
 
-    <div id="message">
-        <h3>{{message}}</h3>
+    <div id="image">
+      <h2>{{message}}</h2>
+      <img src="kirby.gif" >
     </div>
 
-    <div id="image">
-        <img src="kirby.gif">
-    </div>
+        <button type="button5" value="Confetti">Confetti</button>
+    <script src="confetti.js" defer type="module"></script>
+    <div id="href">
     <a href="/">Return home to enter data</a>
+    </div>
     
 
 </body>
