@@ -22,12 +22,16 @@ const getBlobName = (identifier, originalName) => {
     return `${identifier}/${originalName}.txt`;
 };
 
-// Returns the string content of a blob given its blob name
+// Returns the string content of a blob given its blob name (empty string if doesn't exist)
 async function getBlobContent(blobName) {
     const blob = new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,blobName);
-    const downloadBlockBlobResponse = await blob.download();
-    const downloaded = await streamToBuffer(downloadBlockBlobResponse.readableStreamBody);
-    return downloaded.toString();
+    await blob.exists().then( async(exists) => {if(exists) {
+        const downloadBlockBlobResponse = await blob.download();
+        const downloaded = await streamToBuffer(downloadBlockBlobResponse.readableStreamBody);
+        return downloaded.toString();
+    }else{
+        return null;
+    }});
 }
 
 // Helper method for getBlobContent
@@ -47,20 +51,28 @@ async function streamToBuffer(readableStream) {
 async function bajongas(jigglers){
     var milkers = {
         category: '',
-        unit: "",
-        goal: ''
+        unit: '',
+        goal: 0,
+        valueArray: []
     };
-    // Find all tab indices in string because this is how data is separated
-    var tabs = [];
-    for (var i = 0; i < jigglers.length; i++) {
-        if (jigglers.charAt(i) == '\t') {
-            tabs.push(i);
+    if (jigglers) { // Category exists
+        // Find all tab indices in string because this is how data is separated
+        var tabs = [];
+        for (var i = 0; i < jigglers.length; i++) {
+            if (jigglers.charAt(i) == '\t') {
+                tabs.push(i);
+            }
+        }
+        //Assigns values to the category, unit, goal, and valueArray
+        milkers.category = jigglers.substring(0, tabs[0]);
+        milkers.unit = jigglers.substring(tabs[0]+1, tabs[1]);
+        milkers.goal = parseInt(jigglers.substring(tabs[1], tabs[2]));
+        for (var i = 2; i < tabs.length - 1; i++) { // Use tabs.length - 1 because last tab is after all inputted data
+            var valueAndDate = jigglers.substring(tabs[i]+1, tabs[i+1]);
+            var spaceIndex = valueAndDate.indexOf(' ');
+            milkers.valueArray.push(valueAndDate.substring(0, spaceIndex));
         }
     }
-    //Assigns values to the category, unit, and goal
-    milkers.category = jigglers.substring(0, tabs[0]);
-    milkers.unit = jigglers.substring(tabs[0]+1, tabs[1]);
-    milkers.goal = parseInt(jigglers.substring(tabs[1], tabs[2]));
     
     return milkers;
   }
@@ -81,27 +93,29 @@ router.post('/', uploadStrategy, async(req, res) => {
     }
     
     for(let i = 1; i <= 6; i++){
+        // Returns a scroll holding the values we need to fulfill the prophecy (before 'if' because used to check for empty category)
+        var milkers = await bajongas(await getBlobContent(getBlobName(req.body['key'], 'Category' + i)));
+
         if(req.body[('value' + i)]){
-            let entry = req.body[('value' + i)] + ' ' + req.body[('date' + i)] + '\t';
-            appendBlobs[i - 1].appendBlock(entry, entry.length).catch((err)=>{if(err) {handleError(err,res);return;}});
+            if (milkers.category.length > 0) { // Category exists
+                let value = parseInt(req.body[('value' + i)]);
+                let entry = value + ' ' + req.body[('date' + i)] + '\t';
+                appendBlobs[i - 1].appendBlock(entry, entry.length).catch((err)=>{if(err) {handleError(err,res);return;}});
 
-            //Returns a scroll holding the values we need to fulfill the prophecy
-            var milkers = await bajongas(await getBlobContent(getBlobName(req.body['key'], 'Category' + i)));
-
-            //Checks if the goal has been reached
-            console.log(milkers.goal);
-            console.log(milkers);
-                
-            if(parseInt(req.body[('value' + i)]) >= milkers.goal)
-            {
-                viewName = 'congrats';
-                message = 'You did it! You met your goal of ' + milkers.goal + ' ' + milkers.unit + ' in \'' + milkers.category + '\'! Hooray!';
+                let initialVal = milkers.valueArray[0];
+                if(initialVal > milkers.goal && value <= milkers.goal || initialVal < milkers.goal && value >= milkers.goal){
+                    viewName = 'congrats';
+                    message = 'You did it! You met your goal of ' + milkers.goal + ' ' + milkers.unit + ' in \'' + milkers.category + '\'! Hooray!';
+                }
+                else{
+                    viewName = 'success';
+                    message = 'Your data point has been stored successfully.';
+                }
             }
-            else 
-            {
+            else {
                 viewName = 'success';
-                message = 'Your data point has been stored successfully.';
-            } 
+                message = 'The category specified for this data point does not yet exist.';
+            }
         }
     } 
                 
