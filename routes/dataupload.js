@@ -25,7 +25,7 @@ const getBlobName = (identifier, originalName) => {
 // Returns the string content of a blob given its blob name (empty string if doesn't exist)
 async function getBlobContent(blobName) {
     const blob = new AppendBlobClient(process.env.AZURE_STORAGE_CONNECTION_STRING,containerName,blobName);
-    await blob.exists().then( async(exists) => {if(exists) {
+    return await blob.exists().then( async(exists) => {if(exists) {
         const downloadBlockBlobResponse = await blob.download();
         const downloaded = await streamToBuffer(downloadBlockBlobResponse.readableStreamBody);
         return downloaded.toString();
