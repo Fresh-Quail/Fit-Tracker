@@ -9,7 +9,6 @@ Our target audience for this application are primarily athletes who are looking 
 3. Goal System: The app will allow the user to input a numerical goal for each category metric. The user will be able to visualize how close he/she is to reaching the goal by visually observing how close his/her recent data is to the horizontal line (the goal) on each category’s graph. This will encourage him/her to keep going when moving closer to the goal. When the user exceeds the goal, he/she will be congratulated by special animations and a friendly message.
 
 These features were defined and implemented using the Scrum agile framework.
-***
 
 ## Overview
 This is an academic project that is intended to represent a potential software product.
