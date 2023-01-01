@@ -1,4 +1,4 @@
-# Fit-Tracker
+# [Fit-Tracker](http://fit-tracker.azurewebsites.net "Fit-Tracker")
 An accessible, simple, customizable workout app.
 Our target audience for this application are primarily athletes who are looking for a quick way to visualize their athletic progress and performance over time.
 
@@ -28,7 +28,7 @@ Utilizes Azure's Blob Storage and Google's Visualization API to store and displa
 * Emil Ekambaram: Lime029
 
    Shared the role of Backend/Frontend Developer among all group members  
-   Created an accompanying technical report of the project including:  
+   Created an accompanying [technical report](https://docs.google.com/document/d/1_YagblMN6inA19UrL9qnClSe5riXv3X7-1fUaZW5L74/edit?usp=sharing "Software Engineering Final Document") of the project including:  
        * DevOps Pipeline Specification  
        * Architecture and Design Specifications  
        * Historical burndown chart and historical cumulative flow  
