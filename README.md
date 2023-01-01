@@ -8,7 +8,7 @@ Our target audience for this application are primarily athletes who are looking 
 2. Reporting/Graphing: Users can see a representation of their entered data in a graph. There will be one line graph for each category that the user inputs (e.g. body weight, calories).
 3. Goal System: The app will allow the user to input a numerical goal for each category metric. The user will be able to visualize how close he/she is to reaching the goal by visually observing how close his/her recent data is to the horizontal line (the goal) on each category’s graph. This will encourage him/her to keep going when moving closer to the goal. When the user exceeds the goal, he/she will be congratulated by special animations and a friendly message.
 
-These features were defined and implemented using the Scrum agile framework.
+These features were defined and implemented using a Scrum Agile framework.
 
 ## Overview
 This is an academic project that is intended to represent a potential software product.
@@ -18,6 +18,7 @@ forming the foundation for our storage framework
 
 Built with Express.js and hosted on Azure App Services.
 Utilizes Azure's Blob Storage and Google's Visualization API to store and display user data.
+
 
 **Group Members/Collaborators:**
 * Ashraf Ibraheem: Fresh-Quail
