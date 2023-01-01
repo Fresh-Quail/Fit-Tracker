@@ -24,8 +24,8 @@ forming the foundation for our storage framework
 * Jerry Xiao: jexiao8211
 * Emil Ekambaram: Lime029
 
-⋅⋅⋅Shared the role of Backend/Frontend Developer among all group members
-⋅⋅⋅Created an accompanying technical report of the project including:
+⋅⋅⋅ Shared the role of Backend/Frontend Developer among all group members
+⋅⋅⋅ Created an accompanying technical report of the project including:
 ⋅⋅⋅⋅⋅⋅ * DevOps Pipeline Specification
 ⋅⋅⋅⋅⋅⋅ * Architecture and Design Specifications
 ⋅⋅⋅⋅⋅⋅ * Historical burndown chart and historical cumulative flow
