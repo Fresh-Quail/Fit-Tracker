@@ -14,8 +14,11 @@ These features were defined and implemented using the Scrum agile framework.
 ## Overview
 This is an academic project that is intended to represent a potential software product.
 
-Built off a Microsoft prototype project depicting how to interact with an Azure storage account and blob container,
+Prototyped with a Microsoft prototype project depicting how to interact with an Azure storage account and blob container,
 forming the foundation for our storage framework
+
+Built with Express.js and hosted on Azure App Services.
+Utilizes Azure's Blob Storage and Google's Visualization API to store and display user data.
 
 **Group Members/Collaborators:**
 * Ashraf Ibraheem: Fresh-Quail
